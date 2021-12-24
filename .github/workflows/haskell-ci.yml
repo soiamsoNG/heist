@@ -38,11 +38,6 @@ jobs:
             compilerVersion: 8.10.7
             setup-method: ghcup
             allow-failure: false
-          - compiler: ghc-8.8.3
-            compilerKind: ghc
-            compilerVersion: 8.8.3
-            setup-method: hvr-ppa
-            allow-failure: false
       fail-fast: false
     steps:
       - name: apt
@@ -172,7 +167,7 @@ jobs:
           if [ $((HCNUMVER >= 80200)) -ne 0 ] ; then echo "package heist" >> cabal.project ; fi
           if [ $((HCNUMVER >= 80200)) -ne 0 ] ; then echo "    ghc-options: -Werror=missing-methods" >> cabal.project ; fi
           cat >> cabal.project <<EOF
-          allow-newer: all:all
+          allow-newer: heist:all
           EOF
           $HCPKG list --simple-output --names-only | perl -ne 'for (split /\s+/) { print "constraints: $_ installed\n" unless /^(heist)$/; }' >> cabal.project.local
           cat cabal.project

@@ -1,3 +1,3 @@
 packages: heist.cabal
 
-allow-newer: all:all
+allow-newer: heist:all
